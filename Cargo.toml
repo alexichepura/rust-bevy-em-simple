@@ -10,7 +10,7 @@ resolver = "2"
 [dependencies]
 # bevy = { version = "0.6.1", default-features = false, features = ["dynamic", "render", "bevy_winit", "bevy_gltf"] }
 # bevy = { git = "https://github.com/bevyengine/bevy" }
-bevy = { git = "https://github.com/bevyengine/bevy", rev = "b6a647cc", features = ["dynamic", "render", "bevy_winit", "bevy_gltf"] }
+bevy = { git = "https://github.com/bevyengine/bevy", rev = "b6a647cc", features = [ "render", "bevy_winit", "bevy_gltf"] }
 # bevy = { git = "https://github.com/bevyengine/bevy", rev = "b697e73c3d861c209152ccfb140ae00fbc6e9925" }
 # bevy = { git = "https://github.com/bevyengine/bevy", rev = "0e821da7045852ff677c2b8ee945dc85a899b181" }
 # bevy = { git = "https://github.com/bevyengine/bevy", rev = "a291b5a", default-features = false, features = ["dynamic", "render", "bevy_winit", "bevy_gltf"] }

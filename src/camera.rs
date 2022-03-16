@@ -22,8 +22,8 @@ pub fn camera_system(mut commands: Commands) {
     commands.spawn_bundle(OrbitCameraBundle::new(
         OrbitCameraController::default(),
         PerspectiveCameraBundle::default(),
-        Vec3::new(-0.5, 1.0, 1.0),
-        Vec3::new(0., 0., 0.),
+        Vec3::new(0., 0.3, -0.6),
+        Vec3::new(0., 0.2, 0.),
     ));
     // commands.spawn_bundle(PerspectiveCameraBundle {
     //     transform: Transform::from_translation(Vec3::new(0., 2.5, -2.))

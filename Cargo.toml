@@ -8,16 +8,7 @@ license = "MIT OR Apache-2.0"
 resolver = "2"
 
 [dependencies]
-# bevy = { version = "0.6.1", default-features = false, features = ["dynamic", "render", "bevy_winit", "bevy_gltf"] }
-# bevy = { git = "https://github.com/bevyengine/bevy" }
-bevy = { git = "https://github.com/bevyengine/bevy", rev = "b6a647cc", features = [ "render", "bevy_winit", "bevy_gltf"] }
-# bevy = { git = "https://github.com/bevyengine/bevy", rev = "b697e73c3d861c209152ccfb140ae00fbc6e9925" }
-# bevy = { git = "https://github.com/bevyengine/bevy", rev = "0e821da7045852ff677c2b8ee945dc85a899b181" }
-# bevy = { git = "https://github.com/bevyengine/bevy", rev = "a291b5a", default-features = false, features = ["dynamic", "render", "bevy_winit", "bevy_gltf"] }
+bevy = { version = "0.6.1" }
 nalgebra = "^0.30.1"
 parry3d = "^0.8"
-# bevy_config_cam = { version = "0.2.0"}
-# bevy_config_cam = { git = "https://github.com/BlackPhlox/bevy_config_cam"}
-# smooth-bevy-cameras = "0.2.0"
-smooth-bevy-cameras = { git = "https://github.com/bonsairobo/smooth-bevy-cameras" }
-# smooth-bevy-cameras = { git = "https://github.com/dtaralla/smooth-bevy-cameras", branch = "update_bevy" }
+smooth-bevy-cameras = "0.2.0"

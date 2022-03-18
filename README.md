@@ -5,6 +5,9 @@ Developed for self education purposes.
 Physical correctness not guaranted.
 Will evolve to more complex visualisation tool or even simulation eventually.
 
+![Electromagnetic field visualisation screenshot](https://user-images.githubusercontent.com/5582266/158954256-a6f6e86f-94dd-4a5f-a207-332d76693c40.jpg)
+
+
 Standing on the shoulders of giants:
 
 - [Rust](https://www.rust-lang.org)

@@ -6,11 +6,8 @@ use bevy::{
         Transform,
     },
 };
-use nalgebra::Point3;
-use parry3d::{
-    math::Real,
-    shape::{Cone, Cylinder},
-};
+// use nalgebra::Point3;
+use parry3d::shape::{Cone, Cylinder};
 
 use crate::mesh::bevy_mesh;
 
@@ -23,7 +20,7 @@ pub fn field_system(
     mut materials: ResMut<Assets<StandardMaterial>>,
     _asset_server: Res<AssetServer>,
 ) {
-    let current: f32 = 10.0;
+    // let current: f32 = 10.0;
     let current_vec = Vec3::new(0.0, 0.2, 0.0);
     let current_vec_norm = current_vec.normalize();
 
@@ -42,18 +39,19 @@ pub fn field_system(
     let radius = 0.002;
     let shift = radius * 50.;
 
-    for x in 0..5 {
-        for y in 0..5 {
-            for z in 0..5 {
+    println!("current_vec_norm {:?}", current_vec_norm);
+
+    for x in -5..5 {
+        for y in -5..5 {
+            for z in -5..5 {
                 let color = Color::rgb(0.1, 0.5, 0.1);
                 let cylinder = Cylinder::new(radius * 10., radius);
-                let buffers: (Vec<Point3<Real>>, Vec<[u32; 3]>) = cylinder.to_trimesh(10);
-                let cylinder_mesh = bevy_mesh(buffers);
+                let cylinder_mesh = bevy_mesh(cylinder.to_trimesh(10));
                 let (a_x, a_y, a_z) = (shift * x as f32, shift * y as f32, shift * z as f32);
                 let arrow_translation = Vec3::new(a_x, a_y, a_z);
                 let arrow_translation_norm = arrow_translation.normalize();
-                let arrow_cross = current_vec_norm.cross(arrow_translation_norm);
-                let arrow_quat = Quat::from_rotation_arc(arrow_cross, Vec3::Y);
+                let arrow_cross = arrow_translation_norm.cross(current_vec_norm);
+                let arrow_quat = Quat::from_rotation_arc(current_vec_norm, arrow_cross.normalize());
                 let _arrow = commands
                     .spawn_bundle(PbrBundle {
                         transform: Transform {

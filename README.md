@@ -2,7 +2,7 @@
 
 Visualising EM field using Biot–Savart law.
 Developed for self education purposes.
-Physical correctness not guaranted.
+Physical correctness not guaranteed.
 Will evolve to more complex visualisation tool or even simulation eventually.
 
 ![Electromagnetic field visualisation screenshot](https://user-images.githubusercontent.com/5582266/158954754-0ebd166b-5de3-4e59-b09c-c91eff9be8c2.jpg)

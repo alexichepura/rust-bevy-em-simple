@@ -47,7 +47,7 @@ pub fn field_system(
                 let arrow_translation = Vec3::new(a_x, a_y, a_z);
 
                 let arrow_translation_norm = arrow_translation.normalize();
-                let arrow_cross = arrow_translation_norm.cross(current_vec_norm);
+                let arrow_cross = current_vec_norm.cross(arrow_translation_norm);
                 let arrow_quat = Quat::from_rotation_arc(current_vec_norm, arrow_cross.normalize());
 
                 let arrow_tr_length = arrow_translation.length();

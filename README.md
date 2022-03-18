@@ -5,7 +5,7 @@ Developed for self education purposes.
 Physical correctness not guaranted.
 Will evolve to more complex visualisation tool or even simulation eventually.
 
-![Electromagnetic field visualisation screenshot](https://user-images.githubusercontent.com/5582266/158954256-a6f6e86f-94dd-4a5f-a207-332d76693c40.jpg)
+![Electromagnetic field visualisation screenshot](https://user-images.githubusercontent.com/5582266/158954754-0ebd166b-5de3-4e59-b09c-c91eff9be8c2.jpg)
 
 
 Standing on the shoulders of giants:

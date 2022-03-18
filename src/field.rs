@@ -21,10 +21,11 @@ pub fn field_system(
     _asset_server: Res<AssetServer>,
 ) {
     // let current: f32 = 10.0;
-    let current_vec = Vec3::new(0.0, 0.2, 0.0);
+    let current_vec = Vec3::new(0.0, 0.01, 0.0);
+    let current_vec_length = current_vec.length();
     let current_vec_norm = current_vec.normalize();
 
-    let wire_cylinder = Cylinder::new(0.2, 0.002);
+    let wire_cylinder = Cylinder::new(current_vec_length / 2., 0.001);
     let wire_mesh = bevy_mesh(wire_cylinder.to_trimesh(10));
     commands.spawn_bundle(PbrBundle {
         transform: Transform {
@@ -36,22 +37,28 @@ pub fn field_system(
         ..Default::default()
     });
 
-    let radius = 0.002;
-    let shift = radius * 50.;
-
-    println!("current_vec_norm {:?}", current_vec_norm);
-
-    for x in -5..5 {
-        for y in -5..5 {
-            for z in -5..5 {
+    let shift = 0.01;
+    let n = 6;
+    for x in -n..n {
+        for y in -n..n {
+            for z in -n..n {
                 let color = Color::rgb(0.1, 0.5, 0.1);
-                let cylinder = Cylinder::new(radius * 10., radius);
-                let cylinder_mesh = bevy_mesh(cylinder.to_trimesh(10));
                 let (a_x, a_y, a_z) = (shift * x as f32, shift * y as f32, shift * z as f32);
                 let arrow_translation = Vec3::new(a_x, a_y, a_z);
+
                 let arrow_translation_norm = arrow_translation.normalize();
                 let arrow_cross = arrow_translation_norm.cross(current_vec_norm);
                 let arrow_quat = Quat::from_rotation_arc(current_vec_norm, arrow_cross.normalize());
+
+                let arrow_tr_length = arrow_translation.length();
+                let arrow_biot_savart_scale = current_vec_length / arrow_tr_length.powi(2);
+
+                // let arrow_scale = 0.0001 * arrow_biot_savart_scale.powf(1.0 / 2.0);
+                let arrow_scale = 0.00001 * arrow_biot_savart_scale;
+
+                let cylinder = Cylinder::new(arrow_scale * 10., arrow_scale);
+                let cylinder_mesh = bevy_mesh(cylinder.to_trimesh(10));
+
                 let _arrow = commands
                     .spawn_bundle(PbrBundle {
                         transform: Transform {
@@ -64,11 +71,11 @@ pub fn field_system(
                         ..Default::default()
                     })
                     .with_children(|parent| {
-                        let cone = Cone::new(radius * 5., radius * 3.0);
+                        let cone = Cone::new(arrow_scale * 5., arrow_scale * 3.0);
                         let cone_mesh = bevy_mesh(cone.to_trimesh(10));
                         parent.spawn_bundle(PbrBundle {
                             transform: Transform {
-                                translation: Vec3::new(0.0, radius * 10., 0.0),
+                                translation: Vec3::new(0.0, arrow_scale * 10., 0.0),
                                 ..Default::default()
                             },
                             mesh: meshes.add(cone_mesh),

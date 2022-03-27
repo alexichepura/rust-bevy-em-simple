@@ -24,12 +24,21 @@ pub fn field_system(
 ) {
     let mut straight_wire_parts: Vec<(Vec3, Vec3)> = vec![];
 
-    for i in 1..10 {
+    for i in 1..5 {
         straight_wire_parts.push((
             Vec3::new(0.0, 0.01 * i as f32, 0.0),
             Vec3::new(0.0, 0.01, 0.0),
         ));
     }
+
+    for i in 1..5 {
+        straight_wire_parts.push((
+            Vec3::new(0.0, 0.05, 0.01 * i as f32),
+            Vec3::new(0.0, 0.0, 0.01),
+        ));
+    }
+
+    let arrow_init_direction = Vec3::Y;
 
     for (wire_coord, current_vec) in straight_wire_parts.iter() {
         let current_vec_length = current_vec.length();
@@ -38,6 +47,7 @@ pub fn field_system(
         commands.spawn_bundle(PbrBundle {
             transform: Transform {
                 translation: *wire_coord,
+                rotation: Quat::from_rotation_arc(arrow_init_direction, current_vec.normalize()),
                 ..Default::default()
             },
             mesh: meshes.add(wire_mesh),
@@ -48,7 +58,6 @@ pub fn field_system(
 
     let shift = 0.01;
     let n = 5;
-    let arrow_init_direction = Vec3::Y;
     for x in -n..n {
         for y in 0..10 {
             for z in -n..n {
